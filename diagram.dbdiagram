@@ -1,0 +1,39 @@
+{
+  "version": "2.0.0",
+  "darkMode": true,
+  "gridEnabling": false,
+  "currentViewName": null,
+  "defaultView": {
+    "detailLevel": "All",
+    "tablePositions": [
+      {
+        "name": "pengguna",
+        "schemaName": "public",
+        "x": 12,
+        "y": 12
+      },
+      {
+        "name": "kategori",
+        "schemaName": "public",
+        "x": 12,
+        "y": 282
+      },
+      {
+        "name": "tutorial",
+        "schemaName": "public",
+        "x": 537.4931510377397,
+        "y": 130.25306698596808
+      },
+      {
+        "name": "bookmark",
+        "schemaName": "public",
+        "x": 992.9990234375,
+        "y": 12
+      }
+    ],
+    "tableGroupCollapseStates": [],
+    "stickyNoteLayouts": [],
+    "referencePaths": []
+  },
+  "views": {}
+}

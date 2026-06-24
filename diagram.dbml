@@ -1,0 +1,38 @@
+Project lifepedia {
+  database_type: "PostgreSQL"
+}
+
+Table pengguna {
+  id integer [pk, increment]
+  nama varchar
+  email varchar [unique]
+  password varchar
+  foto_profil varchar
+  bio text
+  dibuat_pada timestamp
+  diperbarui_pada timestamp
+}
+
+Table kategori {
+  id integer [pk, increment]
+  nama_kategori varchar
+  deskripsi text
+}
+
+Table tutorial {
+  id integer [pk, increment]
+  pengguna_id integer [ref: > pengguna.id]
+  kategori_id integer [ref: > kategori.id]
+  judul varchar
+  deskripsi text
+  isi text
+  dibuat_pada timestamp
+  diperbarui_pada timestamp
+}
+
+Table bookmark {
+  id integer [pk, increment]
+  pengguna_id integer [ref: > pengguna.id]
+  tutorial_id integer [ref: > tutorial.id]
+  dibuat_pada timestamp
+}

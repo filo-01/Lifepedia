@@ -1,0 +1,28 @@
+{
+  "name": "Lifepedia",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "db:init": "rm Lifepedia.db && node database/init.js",
+    "db:seed": "node database/seeder.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "better-sqlite3": "^12.8.0",
+    "bootstrap": "^5.3.8",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-handlebars": "^8.0.2",
+    "express-session": "^1.19.0",
+    "multer": "^2.2.0",
+    "nodemailer": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

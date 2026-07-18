@@ -1,0 +1,82 @@
+<div class="card border-0 shadow-sm rounded-3 bg-white p-5 mb-5 text-center position-relative overflow-hidden">
+    <div class="row justify-content-center position-relative">
+        <div class="col-md-9 col-lg-8">
+            <div
+                class="d-inline-flex align-items-center justify-content-center bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3 fs-3">
+                <i class="bi bi-rocket-takeoff-fill"></i>
+            </div>
+            {{#if session.email}}
+            <h1 class="fw-bold text-dark mb-2">Halo, {{ session.username }}!</h1>
+            <p class="text-secondary lead fs-6 mb-0">Selamat datang kembali di Lifepedia. Mau cari rahasia lifehack atau
+                visual infografis seru apa hari ini?</p>
+            {{else}}
+            <h1 class="fw-bold text-dark mb-2">Solusi Cepat Masalah Hidupmu</h1>
+            <p class="text-secondary lead fs-6 mb-4">Lifepedia adalah platform berbagi infografis tutorial dan lifehack
+                kreatif dari komunitas secara gratis dan praktis.</p>
+            <div class="d-flex justify-content-center gap-2">
+                <a href="/auth/register" class="btn btn-primary rounded-pill px-4 shadow-sm fw-semibold">Mulai
+                    Bergabung</a>
+                <a href="/auth/login" class="btn btn-outline-secondary rounded-pill px-4 fw-semibold">Jelajahi Dulu</a>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+</div>
+<div class="d-flex align-items-center justify-content-between mb-4">
+    <div>
+        <h3 class="fw-bold text-dark mb-1">
+            <i class="bi bi-fire text-danger me-1"></i> Tutorial Terbaru
+        </h3>
+        <p class="text-secondary small mb-0">Kumpulan infografis langkah-langkah terpopuler minggu ini.</p>
+    </div>
+</div>
+{{#if tutorialList}}
+<div class="row g-4">
+    {{#each tutorialList}}
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100 border-0 shadow-sm rounded-3 bg-white overflow-hidden d-flex flex-column">
+            <div class="bg-light d-flex align-items-center justify-content-center overflow-hidden border-bottom position-relative"
+                style="height: 200px;">
+                <img src="/uploads/tutorial/{{this.isi}}" alt="Infografis Panduan" class="w-100 h-100 object-fit-cover">
+                <span
+                    class="badge bg-dark bg-opacity-75 rounded-pill position-absolute top-0 end-0 m-3 px-3 py-2 small border border-secondary border-opacity-25">
+                    {{this.nama_kategori}}
+                </span>
+            </div>
+            <div class="card-body p-4 d-flex flex-column flex-grow-1">
+                <h5 class="card-title fw-bold mb-2">
+                    <a href="/tutorial/detail/{{this.id}}" class="text-decoration-none text-dark link-primary">
+                        {{this.judul}}
+                    </a>
+                </h5>
+                <p class="card-text text-secondary small flex-grow-1 text-truncate mb-3">
+                    {{this.deskripsi}}
+                </p>
+                <hr class="my-3 opacity-25">
+                <div class="d-flex align-items-center justify-content-between mt-auto">
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="/uploads/foto_profil/{{this.foto_profil}}" alt="Avatar Creator"
+                            class="rounded-circle border" width="32" height="32">
+                        <span class="fw-semibold text-dark small">@{{this.username}}</span>
+                    </div>
+                    <a href="/tutorial/detail/{{this.id}}"
+                        class="btn btn-sm btn-link text-decoration-none fw-semibold p-0">
+                        Baca <i class="bi bi-arrow-right small"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+{{else}}
+<div class="text-center py-5 bg-white rounded-3 shadow-sm border border-light-subtle">
+    <div
+        class="d-inline-flex align-items-center justify-content-center bg-light text-muted rounded-circle p-4 mb-3 fs-1">
+        <i class="bi bi-journals"></i>
+    </div>
+    <h4 class="fw-bold text-dark mb-1">Belum Ada Tutorial</h4>
+    <p class="text-secondary small mb-0">Silakan jalankan file seeder database kamu terlebih dahulu agar data muncul!
+    </p>
+</div>
+{{/if}}

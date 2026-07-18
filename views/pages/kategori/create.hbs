@@ -1,0 +1,53 @@
+<div class="row justify-content-center my-4">
+    <div class="col-md-6 col-lg-5">
+        <div class="card border-0 shadow rounded-3 bg-white">
+            <div class="card-body p-5">
+                <div class="text-center mb-4">
+                    <div
+                        class="d-inline-flex align-items-center justify-content-center bg-light text-success rounded-circle p-3 mb-3 fs-3 border">
+                        <i class="bi bi-plus-circle-fill"></i>
+                    </div>
+                    <h3 class="fw-bold text-dark mb-1">
+                        Tambah Kategori
+                    </h3>
+                    <p class="text-secondary small">
+                        Buat klasifikasi bidang baru untuk mengelompokkan kiriman tutorial lifehack.
+                    </p>
+                </div>
+                {{#if pesanError}}
+                <div class="alert alert-danger rounded-3 border-0 shadow-sm mb-4">
+                    <ul class="mb-0 ps-3">
+                        {{#each pesanError}}
+                        <li>{{this}}</li>
+                        {{/each}}
+                    </ul>
+                </div>
+                {{/if}}
+                <form method="POST" action="/kategori/create">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">
+                            Nama Kategori
+                        </label>
+                        <input type="text" class="form-control bg-light" name="nama_kategori"
+                            placeholder="Contoh: Teknologi" value="{{formData.nama_kategori}}" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">
+                            Deskripsi
+                        </label>
+                        <textarea class="form-control bg-light" name="deskripsi" rows="4"
+                            placeholder="Masukkan deskripsi kategori..." required>{{formData.deskripsi}}</textarea>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <a href="/kategori/list" class="btn btn-outline-secondary rounded-pill w-50">
+                            Batal
+                        </a>
+                        <button type="submit" class="btn btn-primary rounded-pill shadow-sm w-50">
+                            Simpan
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

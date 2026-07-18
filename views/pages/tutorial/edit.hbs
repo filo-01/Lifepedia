@@ -1,0 +1,51 @@
+<div class="row justify-content-center my-4">
+    <div class="col-md-10 col-lg-8">
+        <div class="card border-0 shadow rounded-3 bg-white">
+            <div class="card-body p-5">
+                <div class="text-center mb-4">
+                    <div
+                        class="d-inline-flex align-items-center justify-content-center bg-light text-warning rounded-circle p-3 mb-3 fs-3 border">
+                        <i class="bi bi-pencil-square"></i>
+                    </div>
+                    <h3 class="fw-bold text-dark mb-1">Edit Tutorial</h3>
+                    <p class="text-secondary small">Perbarui detail informasi teks atau perbarui berkas visual
+                        langkah-langkah.</p>
+                </div>
+
+                <form method="POST" action="/tutorial/edit/{{tutorial.id}}" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="judul" class="form-label fw-semibold text-secondary small">Judul Tutorial</label>
+                        <input type="text" class="form-control bg-light" id="judul" name="judul"
+                            value="{{tutorial.judul}}" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="deskripsi" class="form-label fw-semibold text-secondary small">Deskripsi
+                            Ringkat</label>
+                        <textarea class="form-control bg-light" id="deskripsi" name="deskripsi" rows="3"
+                            required>{{tutorial.deskripsi}}</textarea>
+                    </div>
+
+                    <div class="mb-4 p-3 bg-light rounded-3 border">
+                        <div class="fw-semibold text-dark small mb-2">Pratinjau Infografis Saat Ini:</div>
+                        <div class="text-center mb-3">
+                            <img src="/uploads/tutorial/{{tutorial.isi}}" alt="Current Infografis"
+                                class="img-fluid rounded border bg-white shadow-sm" style="max-height: 200px;">
+                        </div>
+                        <label for="isi" class="form-label fw-semibold text-secondary small mb-1">Ganti Berkas Gambar
+                            (Opsional)</label>
+                        <input type="file" class="form-control bg-white" id="isi" name="isi" accept="image/*" />
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <a href="/pengguna/profil"
+                            class="btn btn-outline-secondary w-50 rounded-pill py-2 fw-semibold">Batal</a>
+                        <button type="submit"
+                            class="btn btn-primary w-50 rounded-pill py-2 fw-semibold shadow-sm">Simpan
+                            Perubahan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

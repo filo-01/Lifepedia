@@ -1,0 +1,87 @@
+<div class="row justify-content-center">
+    <div class="col-12 col-lg-10">
+
+        <div class="d-md-flex align-items-center justify-content-between mb-4 pb-2 border-bottom">
+            <div>
+                <h2 class="fw-bold text-dark d-flex align-items-center gap-2 mb-1">
+                    <i class="bi bi-bookmark-heart-fill text-danger"></i> Tutorial yang Disimpan
+                </h2>
+                <p class="text-secondary small mb-0">Daftar semua tips dan lifehack bermanfaat yang telah Anda bookmark.
+                </p>
+            </div>
+            <div class="mt-2 mt-md-0">
+                <a href="/" class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-semibold">
+                    <i class="bi bi-plus-circle me-1"></i> Jelajahi Tutorial Baru
+                </a>
+            </div>
+        </div>
+
+        {{#if bookmarkList}}
+        <div class="row g-4">
+            {{#each bookmarkList}}
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm rounded-3 bg-white position-relative overflow-hidden">
+
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <span
+                                class="badge bg-primary-subtle text-primary rounded-pill px-3 py-2 small border border-primary-subtle">
+                                <i class="bi bi-tag-fill me-1"></i> {{this.nama_kategori}}
+                            </span>
+                            <span class="text-muted small d-inline-flex align-items-center gap-1">
+                                <i class="bi bi-calendar3"></i> {{this.dibuat_pada}}
+                            </span>
+                        </div>
+
+                        <h4 class="card-title fw-bold text-dark mb-2">
+                            <a href="/tutorial/detail/{{this.tutorial_id}}"
+                                class="text-decoration-none text-dark link-primary">
+                                {{this.judul}}
+                            </a>
+                        </h4>
+
+                        <p class="card-text text-secondary small flex-grow-1 text-truncate-2">
+                            {{this.deskripsi}}
+                        </p>
+
+                        <hr class="my-3 text-muted opacity-25">
+
+                        <div class="d-flex align-items-center justify-content-between mt-auto">
+                            <div class="d-flex align-items-center gap-2">
+                                <img src="/uploads/foto_profil/{{this.foto_profil}}" alt="Profil Creator"
+                                    class="rounded-circle border" width="36" height="36">
+                                <div class="lh-sm">
+                                    <div class="fw-semibold text-dark small">{{this.username}}</div>
+                                    <div class="text-muted small" style="font-size: 0.75rem;">Creator</div>
+                                </div>
+                            </div>
+
+                            <form method="POST" action="/bookmark/delete/{{this.bookmark_id}}" class="m-0">
+                                <button type="submit"
+                                    class="btn btn-outline-danger btn-sm rounded-circle d-inline-flex align-items-center justify-content-center p-2"
+                                    title="Hapus Bookmark">
+                                    <i class="bi bi-trash3-fill"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        {{else}}
+        <div class="text-center py-5 my-4 bg-white rounded-3 shadow-sm border border-light-subtle">
+            <div
+                class="d-inline-flex align-items-center justify-content-center bg-light text-muted rounded-circle p-4 mb-3 fs-1">
+                <i class="bi bi-bookmark-x"></i>
+            </div>
+            <h4 class="fw-bold text-dark mb-1">Belum Ada Bookmark</h4>
+            <p class="text-secondary small mb-4">Kamu belum menyimpan tutorial apa pun. Cari lifehack menarik dan simpan
+                di sini!</p>
+            <a href="/" class="btn btn-primary rounded-pill px-4 fw-semibold shadow-sm">Mulai Menjelajah</a>
+        </div>
+        {{/if}}
+
+    </div>
+</div>

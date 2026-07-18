@@ -1,0 +1,6 @@
+node_modules
+database/lifepedia.db
+uploads/foto_profil/*
+!uploads/foto_profil/default.jpg
+uploads/tutorial/*
+.env

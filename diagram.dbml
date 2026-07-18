@@ -5,6 +5,7 @@ Project lifepedia {
 Table pengguna {
   id integer [pk, increment]
   nama varchar
+  username varchar
   email varchar [unique]
   password varchar
   foto_profil varchar
@@ -26,6 +27,7 @@ Table tutorial {
   judul varchar
   deskripsi text
   isi text
+  jumlah_dilihat integer [default: 0]
   dibuat_pada timestamp
   diperbarui_pada timestamp
 }
@@ -34,5 +36,13 @@ Table bookmark {
   id integer [pk, increment]
   pengguna_id integer [ref: > pengguna.id]
   tutorial_id integer [ref: > tutorial.id]
+  dibuat_pada timestamp
+}
+
+Table komentar {
+  id integer [pk, increment]
+  pengguna_id integer [ref: > pengguna.id]
+  tutorial_id integer [ref: > tutorial.id]
+  isi text
   dibuat_pada timestamp
 }

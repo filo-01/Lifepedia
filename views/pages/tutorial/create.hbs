@@ -1,0 +1,92 @@
+<div class="row justify-content-center my-4">
+    <div class="col-md-10 col-lg-8">
+        <div class="card border-0 shadow rounded-3 bg-white">
+            <div class="card-body p-5">
+                <div class="text-center mb-4">
+                    <div
+                        class="d-inline-flex align-items-center justify-content-center bg-light text-primary rounded-circle p-3 mb-3 fs-3 border">
+                        <i class="bi bi-file-earmark-plus"></i>
+                    </div>
+                    <h3 class="fw-bold text-dark mb-1">Tulis Tutorial Baru</h3>
+                    <p class="text-secondary small">
+                        Bagikan panduan visual infografis kreatif milikmu kepada seluruh pengguna Lifepedia.
+                    </p>
+                </div>
+
+                {{#if pesanError}}
+                <div class="alert alert-danger rounded-3 border-0 shadow-sm p-3 mb-3">
+                    <ul class="mb-0 ps-3 small">
+                        {{#each pesanError}}
+                        <li>{{this}}</li>
+                        {{/each}}
+                    </ul>
+                </div>
+                {{/if}}
+
+                <form method="POST" action="/tutorial/create" enctype="multipart/form-data">
+
+                    <div class="mb-3">
+                        <label for="judul" class="form-label fw-semibold text-secondary small">
+                            Judul Tutorial
+                        </label>
+
+                        <input type="text" class="form-control bg-light" id="judul" name="judul"
+                            value="{{formData.judul}}" placeholder="Contoh: Cara Baking Kue Lembut Tanpa Mixer"
+                            required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="kategori_id" class="form-label fw-semibold text-secondary small">
+                            Kategori Bidang
+                        </label>
+
+                        <select class="form-select bg-light" id="kategori_id" name="kategori_id" required>
+
+                            <option value="">Pilih kategori...</option>
+
+                            {{#each kategoriList}}
+                            <option value="{{this.id}}" {{#if (eq this.id ../formData.kategori_id)}}selected{{/if}}>
+                                {{this.nama_kategori}}
+                            </option>
+                            {{/each}}
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="deskripsi" class="form-label fw-semibold text-secondary small">
+                            Deskripsi Singkat
+                        </label>
+
+                        <textarea class="form-control bg-light" id="deskripsi" name="deskripsi" rows="3"
+                            placeholder="Tuliskan ringkasan tutorial..." required>{{formData.deskripsi}}</textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="isi" class="form-label fw-semibold text-secondary small">
+                            Upload Gambar Tutorial
+                        </label>
+
+                        <input type="file" class="form-control bg-light" id="isi" name="isi"
+                            accept=".png,.jpg,.jpeg,.webp" required>
+
+                        <div class="form-text">
+                            Format yang didukung:
+                            JPG, JPEG, PNG, WEBP.
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2">
+
+                        <a href="/tutorial/list" class="btn btn-outline-secondary w-50 rounded-pill">
+                            Batal
+                        </a>
+
+                        <button type="submit" class="btn btn-primary w-50 rounded-pill shadow-sm">
+                            Terbitkan Tutorial
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lifepedia - Berbagi Tutorial dan Life Hack</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+<body class="bg-light d-flex flex-column min-vh-100">
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4" href="/tutorial/list">
+                <i class="bi bi-lightbulb-fill text-warning"></i>
+                Life<span class="text-primary">pedia</span>
+            </a>
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tutorial/list">
+                            <i class="bi bi-house-door"></i>
+                            Beranda
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/kategori/list">
+                            <i class="bi bi-grid"></i>
+                            Kategori
+                        </a>
+                    </li>
+                    {{#if session.email}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/bookmark/list">
+                            <i class="bi bi-bookmark"></i>
+                            Bookmark
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pengguna/profil">
+                            <i class="bi bi-person"></i>
+                            Profil
+                        </a>
+                    </li>
+                    {{/if}}
+                </ul>
+                <div class="d-flex">
+                    {{#if session.email}}
+                    <div class="dropdown">
+                        <button class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">
+                            {{session.username}}
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <a class="dropdown-item" href="/pengguna/profil">
+                                    <i class="bi bi-person"></i>
+                                    Profil Saya
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/tutorial/create">
+                                    <i class="bi bi-plus-circle"></i>
+                                    Buat Tutorial
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/bookmark/list">
+                                    <i class="bi bi-bookmark"></i>
+                                    Bookmark
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <a class="dropdown-item text-danger" href="/auth/logout">
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    {{else}}
+                    <a href="/auth/login" class="btn btn-outline-primary me-2">
+                        Login
+                    </a>
+                    <a href="/auth/register" class="btn btn-primary">
+                        Register
+                    </a>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-4 flex-grow-1">
+        {{{body}}}
+    </main>
+
+    <footer class="bg-white border-top mt-auto py-3">
+        <div class="container text-center text-muted">
+            © 2026 Lifepedia • Developed by Filo EAA mwahahhaha!
+        </div>
+    </footer>
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

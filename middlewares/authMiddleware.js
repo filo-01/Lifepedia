@@ -1,3 +1,4 @@
+// Middleware untuk memastikan user sudah login sebelum membuka halaman tertentu.
 function isAuthenticated(req, res, next) {
     if (req.session && req.session.email) {
         return next();
@@ -6,6 +7,7 @@ function isAuthenticated(req, res, next) {
     }
 }
 
+// Middleware untuk mencegah user yang sudah login membuka halaman login/register lagi.
 function isNotAuthenticated(req, res, next) {
     if (req.session && req.session.email) {
         res.redirect('/');
@@ -14,6 +16,7 @@ function isNotAuthenticated(req, res, next) {
     }
 }
 
+// Middleware untuk mengecek apakah user memiliki peran tertentu.
 function authorize(...peran) {
     return (req, res, next) => {
         if (!req.session || !req.session.peran || !peran.includes(req.session.peran)) {

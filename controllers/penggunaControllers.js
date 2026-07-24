@@ -1,6 +1,7 @@
 const PenggunaModel = require("../models/Pengguna");
 const TutorialModel = require("../models/Tutorial");
 
+// Fungsi untuk memvalidasi data profil sebelum diperbarui.
 function validateProfil(nama, username, bio) {
   const pesanError = [];
 
@@ -25,6 +26,7 @@ function validateProfil(nama, username, bio) {
   return pesanError;
 }
 
+// Fungsi untuk menampilkan halaman profil pengguna beserta tutorial yang dibuatnya.
 function showProfil(req, res) {
   if (!req.session.email) {
     res.redirect("/auth/login");
@@ -42,6 +44,7 @@ function showProfil(req, res) {
   });
 }
 
+// Fungsi untuk menampilkan form edit profil pengguna.
 function showEditProfilForm(req, res) {
   if (!req.session.email) {
     res.redirect("/auth/login");
@@ -54,6 +57,7 @@ function showEditProfilForm(req, res) {
   res.render("pages/pengguna/edit", { pengguna, session: req.session });
 }
 
+// Fungsi untuk menangani pembaruan profil pengguna.
 function editProfil(req, res) {
   if (!req.session.email) {
     res.redirect("/auth/login");

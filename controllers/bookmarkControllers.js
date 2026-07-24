@@ -1,5 +1,6 @@
 const BookmarkModel = require("../models/Bookmark");
 
+// Fungsi untuk menampilkan daftar tutorial yang telah disimpan pengguna sebagai bookmark.
 function listBookmark(req, res) {
   if (!req.session.email) {
     res.redirect("/auth/login");
@@ -18,6 +19,7 @@ function listBookmark(req, res) {
   });
 }
 
+// Fungsi untuk menambahkan tutorial ke daftar bookmark pengguna.
 function addBookmark(req, res) {
   if (!req.session.email) {
     res.redirect("/auth/login");
@@ -36,6 +38,7 @@ function addBookmark(req, res) {
   res.redirect("/bookmark/list");
 }
 
+// Fungsi untuk menghapus tutorial dari daftar bookmark pengguna.
 function deleteBookmark(req, res) {
   if (!req.session.email) {
     res.redirect("/auth/login");

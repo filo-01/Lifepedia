@@ -1,5 +1,6 @@
 const KategoriModel = require("../models/Kategori");
 
+// Fungsi untuk memvalidasi data kategori sebelum disimpan.
 function validateKategori(nama_kategori, deskripsi) {
   const pesanError = [];
 
@@ -22,6 +23,7 @@ function validateKategori(nama_kategori, deskripsi) {
   return pesanError;
 }
 
+// Fungsi untuk menampilkan seluruh kategori yang tersedia.
 function listKategori(req, res) {
   const kategoriList = KategoriModel.ambilSemuaKategori();
 
@@ -35,10 +37,12 @@ function listKategori(req, res) {
   });
 }
 
+// Fungsi untuk menampilkan form pembuatan kategori baru.
 function showCreateForm(req, res) {
   res.render("pages/kategori/create", { session: req.session });
 }
 
+// Fungsi untuk menangani pembuatan kategori baru.
 function createKategori(req, res) {
   const { nama_kategori, deskripsi } = req.body;
 
@@ -59,6 +63,7 @@ function createKategori(req, res) {
   res.redirect("/kategori/list");
 }
 
+// Fungsi untuk menampilkan form edit kategori berdasarkan id.
 function showEditForm(req, res) {
   const { id } = req.params;
 
@@ -70,6 +75,7 @@ function showEditForm(req, res) {
   });
 }
 
+// Fungsi untuk menangani pembaruan data kategori.
 function editKategori(req, res) {
   const { id } = req.params;
   const { nama_kategori, deskripsi } = req.body;
@@ -91,6 +97,7 @@ function editKategori(req, res) {
   res.redirect("/kategori/list");
 }
 
+// Fungsi untuk menghapus kategori berdasarkan id.
 function deleteKategori(req, res) {
   const { id } = req.params;
 

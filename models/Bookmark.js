@@ -1,5 +1,6 @@
 const db = require('../database/config');
 
+// Fungsi untuk mengambil semua tutorial yang disimpan user sebagai bookmark.
 function ambilBookmarkOlehPengguna(penggunaId) {
     return db.prepare(`
         SELECT b.id AS bookmark_id, t.id AS tutorial_id, t.judul, t.deskripsi, 
@@ -13,6 +14,7 @@ function ambilBookmarkOlehPengguna(penggunaId) {
     `).all(penggunaId);
 }
 
+// Fungsi untuk mengecek apakah tutorial tertentu sudah ada di bookmark user.
 function cekApakahSudahBookmark(penggunaId, tutorialId) {
     const row = db.prepare(`
         SELECT id FROM bookmark 
@@ -21,6 +23,7 @@ function cekApakahSudahBookmark(penggunaId, tutorialId) {
     return row !== undefined;
 }
 
+// Fungsi untuk menambahkan tutorial ke bookmark user.
 function tambahBookmark(penggunaId, tutorialId) {
     return db.prepare(`
         INSERT INTO bookmark (pengguna_id, tutorial_id) 
@@ -28,6 +31,7 @@ function tambahBookmark(penggunaId, tutorialId) {
     `).run(penggunaId, tutorialId);
 }
 
+// Fungsi untuk menghapus bookmark berdasarkan id bookmark.
 function hapusBookmark(id) {
     return db.prepare('DELETE FROM bookmark WHERE id = ?').run(id);
 }

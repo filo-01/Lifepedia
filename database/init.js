@@ -2,6 +2,12 @@ const db = require('./config');
 
 db.pragma("foreign_keys = ON");
 
+/*
+  Membuat tabel pengguna untuk menyimpan data akun.
+  id = identitas unik tiap user.
+  email wajib unik agar tidak ada akun duplikat.
+  CURRENT_TIMESTAMP dipakai untuk mengisi waktu otomatis saat data dibuat.
+*/
 db.exec(`
   CREATE TABLE IF NOT EXISTS pengguna (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -16,6 +22,10 @@ db.exec(`
   );
 `);
 
+/*
+  Membuat tabel kategori untuk mengelompokkan tutorial.
+  nama_kategori wajib unik agar tidak ada kategori yang sama.
+*/
 db.exec(`
   CREATE TABLE IF NOT EXISTS kategori (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -24,6 +34,10 @@ db.exec(`
   );
 `);
 
+/*
+  Membuat tabel tutorial untuk menyimpan isi konten.
+  tutorial terhubung ke tabel pengguna dan kategori melalui foreign key.
+*/
 db.exec(`
   CREATE TABLE IF NOT EXISTS tutorial (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -40,6 +54,10 @@ db.exec(`
   );
 `);
 
+/*
+  Membuat tabel bookmark untuk menyimpan tutorial yang disimpan user.
+  UNIQUE memastikan user tidak bisa menyimpan tutorial yang sama dua kali.
+*/
 db.exec(`
   CREATE TABLE IF NOT EXISTS bookmark (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -52,6 +70,9 @@ db.exec(`
   );
 `);
 
+/*
+  Membuat tabel komentar untuk menyimpan pendapat user pada tutorial.
+*/
 db.exec(`
   CREATE TABLE IF NOT EXISTS komentar (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -64,6 +85,9 @@ db.exec(`
   );
 `);
 
+/*
+  Membuat index agar pencarian data berdasarkan relasi lebih cepat.
+*/
 db.exec(`
   CREATE INDEX IF NOT EXISTS idx_tutorial_pengguna ON tutorial(pengguna_id);
   CREATE INDEX IF NOT EXISTS idx_tutorial_kategori ON tutorial(kategori_id);

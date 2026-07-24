@@ -1,12 +1,15 @@
+// Menghubungkan ke database dan library bcrypt untuk mengenkripsi password.
 const db = require('./config');
 const bcrypt = require('bcrypt');
 
 db.pragma("foreign_keys = ON");
 
+// Fungsi untuk mengenkripsi password sebelum disimpan ke database.
 async function hashPassword(password) {
     return await bcrypt.hash(password, 10);
 }
 
+// Fungsi utama untuk mengisi data awal ke database.
 async function seedDatabase() {
     try {
         console.log('🌱 Memulai seeding database...');

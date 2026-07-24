@@ -1,9 +1,12 @@
 const PenggunaModel = require("../models/Pengguna");
 const bcrypt = require("bcrypt");
 
+// Fungsi untuk memvalidasi data pendaftaran sebelum akun dibuat.
 function validateRegister(nama, username, email, password) {
   const pesanError = [];
 
+  // username.trim() digunakan untuk menghapus spasi di awal dan akhir teks.
+  // Contoh: "  firo  " -> "firo"
   if (!nama || nama.trim() === "") {
     pesanError.push("Nama tidak boleh kosong");
   } else if (nama.trim().length < 3) {
@@ -31,6 +34,7 @@ function validateRegister(nama, username, email, password) {
   return pesanError;
 }
 
+// Fungsi untuk memvalidasi data login sebelum proses autentikasi dimulai.
 function validateLogin(email, password) {
   const pesanError = [];
 
@@ -45,18 +49,21 @@ function validateLogin(email, password) {
   return pesanError;
 }
 
+// Fungsi untuk menampilkan halaman login kepada pengguna.
 function showLoginForm(req, res) {
   return res.render("pages/auth/login", {
     session: req.session
   });
 }
 
+// Fungsi untuk menampilkan halaman registrasi kepada pengguna.
 function showRegisterForm(req, res) {
   return res.render("pages/auth/register", {
     session: req.session
   });
 }
 
+// Fungsi untuk menangani proses pendaftaran akun baru.
 async function register(req, res) {
   const { nama, username, email, password } = req.body;
 
@@ -100,6 +107,7 @@ async function register(req, res) {
   return res.redirect("/auth/login");
 }
 
+// Fungsi untuk menangani proses login pengguna.
 async function login(req, res) {
   const { email, password } = req.body;
 
@@ -133,6 +141,8 @@ async function login(req, res) {
     });
   }
 
+  // req.session dipakai untuk menyimpan data sementara per user saat login.
+  // Jadi setelah login, browser user yang sama bisa tetap dikenali di halaman lain.
   req.session.penggunaId = pengguna.id;
   req.session.username = pengguna.username;
   req.session.email = pengguna.email;
@@ -141,18 +151,21 @@ async function login(req, res) {
   return res.redirect("/");
 }
 
+// Fungsi untuk mengakhiri sesi pengguna dan keluar dari aplikasi.
 function logout(req, res) {
   req.session.destroy(function () {
     res.redirect("/auth/login");
   });
 }
 
+// Fungsi untuk menampilkan form lupa password.
 function showForgotPasswordForm(req, res) {
   return res.render("pages/auth/forgot-password", {
     session: req.session
   });
 }
 
+// Fungsi untuk menangani permintaan reset password.
 function forgotPassword(req, res) {
   const { email } = req.body;
 
@@ -169,6 +182,7 @@ function forgotPassword(req, res) {
   });
 }
 
+// Fungsi untuk menampilkan form pengisian password baru.
 function showResetPasswordForm(req, res) {
   return res.render("pages/auth/reset-password", {
     token: req.params.token,
@@ -176,6 +190,7 @@ function showResetPasswordForm(req, res) {
   });
 }
 
+// Fungsi untuk menangani proses pengaturan password baru.
 async function resetPassword(req, res) {
   const { token, password, confirmPassword } = req.body;
 

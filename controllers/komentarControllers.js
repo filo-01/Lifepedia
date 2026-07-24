@@ -1,5 +1,6 @@
 const KomentarModel = require("../models/Komentar");
 
+// Fungsi untuk memvalidasi isi komentar sebelum disimpan.
 function validateKomentar(isi) {
   const pesanError = [];
 
@@ -14,6 +15,7 @@ function validateKomentar(isi) {
   return pesanError;
 }
 
+// Fungsi untuk menangani penambahan komentar pada tutorial.
 function createKomentar(req, res) {
   if (!req.session.email) {
     return res.redirect("/auth/login");
@@ -41,7 +43,7 @@ function createKomentar(req, res) {
   return res.redirect("/tutorial/detail/" + tutorial_id);
 }
 
-
+// Fungsi untuk menghapus komentar berdasarkan id dan tutorial terkait.
 function deleteKomentar(req, res) {
   if (!req.session.email) {
     res.redirect("/auth/login");
